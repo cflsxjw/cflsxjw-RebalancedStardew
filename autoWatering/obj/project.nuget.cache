@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "e1mj65IoYPA=",
+  "success": true,
+  "projectFilePath": "/home/cflsxjw/文档/VscodeProjects/cflsxjw-RebalancedStardew/autoWatering/autoWatering.csproj",
+  "expectedPackageFiles": [
+    "/home/cflsxjw/.nuget/packages/pathoschild.stardew.modbuildconfig/4.2.0/pathoschild.stardew.modbuildconfig.4.2.0.nupkg.sha512"
+  ],
+  "logs": []
+}

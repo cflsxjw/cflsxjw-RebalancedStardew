@@ -1,0 +1,9 @@
+{
+    "Name": "cflsxjw's Rebalanced Stardew",
+    "Author": "flsxjw",
+    "Version": "0.0.1",
+    "Description": "",
+    "UniqueID": "cflsxjw.rebalancedStardew",
+    "EntryDll": "autoWatering.dll",
+    "UpdateKeys": []
+}

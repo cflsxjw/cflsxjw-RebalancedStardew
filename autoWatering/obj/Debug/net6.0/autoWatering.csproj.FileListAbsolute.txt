@@ -1,0 +1,8 @@
+/home/cflsxjw/文档/VscodeProjects/cflsxjw-RebalancedStardew/autoWatering/bin/Debug/net6.0/autoWatering.deps.json
+/home/cflsxjw/文档/VscodeProjects/cflsxjw-RebalancedStardew/autoWatering/bin/Debug/net6.0/autoWatering.dll
+/home/cflsxjw/文档/VscodeProjects/cflsxjw-RebalancedStardew/autoWatering/obj/Debug/net6.0/autoWatering.csproj.AssemblyReference.cache
+/home/cflsxjw/文档/VscodeProjects/cflsxjw-RebalancedStardew/autoWatering/obj/Debug/net6.0/autoWatering.GeneratedMSBuildEditorConfig.editorconfig
+/home/cflsxjw/文档/VscodeProjects/cflsxjw-RebalancedStardew/autoWatering/obj/Debug/net6.0/autoWatering.AssemblyInfoInputs.cache
+/home/cflsxjw/文档/VscodeProjects/cflsxjw-RebalancedStardew/autoWatering/obj/Debug/net6.0/autoWatering.AssemblyInfo.cs
+/home/cflsxjw/文档/VscodeProjects/cflsxjw-RebalancedStardew/autoWatering/obj/Debug/net6.0/autoWatering.csproj.CoreCompileInputs.cache
+/home/cflsxjw/文档/VscodeProjects/cflsxjw-RebalancedStardew/autoWatering/obj/Debug/net6.0/autoWatering.dll
