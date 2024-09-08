@@ -33,19 +33,73 @@ namespace autoWatering
 
         private void OnTerrainFeatureListChanged(object? sender, TerrainFeatureListChangedEventArgs e)
         {
+            if (!plantableList.Contains(e.Location))
+            {
+                return;
+            }
+
             foreach (var item in e.Added)
             {
-                if (item.Value is HoeDirt)
+                if (item.Value is HoeDirt hoeDirt)
                 {
-                    
-                    break;
+                    if (!HoeDirtList.ContainsKey(hoeDirt.Tile))
+                    {
+                        HoeDirtList.Add(hoeDirt.Tile,hoeDirt);
+                        Monitor.Log("AddH", LogLevel.Error);
+                    }
+                }
+            }
+            foreach (var item in e.Removed)
+            {
+                if (item.Value is HoeDirt hoeDirt)
+                {
+                    HoeDirtList.Remove(hoeDirt.Tile);
+                    Monitor.Log("RemovedH", LogLevel.Error);
                 }
             }
         }
 
         private void OnObjectListChanged(object? sender, ObjectListChangedEventArgs e)
         {
-            //UpdateWaterList();
+            if (!(plantableList.Contains(e.Location) || unplantableIndoors.Contains(e.Location)))
+            {
+                return;
+            }
+            //add
+            foreach (var item in e.Added)
+            {
+                if (item.Value.IsSprinkler())
+                {
+                    foreach (var tile in item.Value.GetSprinklerTiles())
+                    {
+                        if (!SprinklerTiles.Contains(tile))
+                        {
+                            SprinklerTiles.Add(tile);
+                            Monitor.Log("AddS", LogLevel.Error);
+                        }
+                    }
+                }
+                if (item.Value is IndoorPot pot)
+                {
+                    PotList.Add(pot);
+                }
+            }
+            //remove
+            foreach (var item in e.Removed)
+            {
+                if (item.Value.IsSprinkler())
+                {
+                    foreach (var tile in item.Value.GetSprinklerTiles())
+                    {
+                        SprinklerTiles.Remove(tile);
+                        Monitor.Log("RemovedS", LogLevel.Error);
+                    }
+                }
+                if (item.Value is IndoorPot pot)
+                {
+                    PotList.Remove(pot);
+                }
+            }
         }
 
         private void OnDayStarted(object? sender, DayStartedEventArgs e)
@@ -54,7 +108,7 @@ namespace autoWatering
             int PotCount = 0;
             foreach (var item in HoeDirtList.Values)
             {
-                if (item.crop != null)
+                if (!SprinklerTiles.Contains(item.Tile) && item.crop != null)
                 {
                     item.state.Value = HoeDirt.watered;
                     HoeDirtCount++;
@@ -98,7 +152,7 @@ namespace autoWatering
                     {
                         foreach(var tile in item.GetSprinklerTiles())
                         {
-                            HoeDirtList.Remove(tile);
+                            SprinklerTiles.Add(tile);
                         }
                     }
                     else if (item is IndoorPot pot)
