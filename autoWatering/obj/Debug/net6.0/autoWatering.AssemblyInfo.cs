@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("autoWatering")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+985b540a2735acb4dd004c4133d39554848b0d0b")]
 [assembly: System.Reflection.AssemblyProductAttribute("autoWatering")]
 [assembly: System.Reflection.AssemblyTitleAttribute("autoWatering")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

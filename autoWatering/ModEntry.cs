@@ -45,7 +45,6 @@ namespace autoWatering
                     if (!HoeDirtList.ContainsKey(hoeDirt.Tile))
                     {
                         HoeDirtList.Add(hoeDirt.Tile,hoeDirt);
-                        Monitor.Log("AddH", LogLevel.Error);
                     }
                 }
             }
@@ -54,7 +53,6 @@ namespace autoWatering
                 if (item.Value is HoeDirt hoeDirt)
                 {
                     HoeDirtList.Remove(hoeDirt.Tile);
-                    Monitor.Log("RemovedH", LogLevel.Error);
                 }
             }
         }
@@ -75,7 +73,6 @@ namespace autoWatering
                         if (!SprinklerTiles.Contains(tile))
                         {
                             SprinklerTiles.Add(tile);
-                            Monitor.Log("AddS", LogLevel.Error);
                         }
                     }
                 }
@@ -92,7 +89,6 @@ namespace autoWatering
                     foreach (var tile in item.Value.GetSprinklerTiles())
                     {
                         SprinklerTiles.Remove(tile);
-                        Monitor.Log("RemovedS", LogLevel.Error);
                     }
                 }
                 if (item.Value is IndoorPot pot)
