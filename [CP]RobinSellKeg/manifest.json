@@ -1,0 +1,11 @@
+{
+    "Name": "Robin Sell Keg",
+    "Author": "cflsxjw",
+    "Version": "0.1.0",
+    "Description": "let Robin sell kegs",
+    "UniqueID": "cflsxjw.robinsellkeg",
+    "ContentPackFor": {
+        "UniqueID": "Pathoschild.ContentPatcher"
+    },
+    "UpdateKeys": []
+}

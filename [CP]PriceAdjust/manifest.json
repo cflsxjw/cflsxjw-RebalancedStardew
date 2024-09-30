@@ -1,0 +1,11 @@
+{
+    "Name": "Price Adjustments",
+    "Author": "cflsxjw",
+    "Version": "0.1.0",
+    "Description": "adjust in-game price",
+    "UniqueID": "cflsxjw.priceadjust",
+    "ContentPackFor": {
+        "UniqueID": "Pathoschild.ContentPatcher"
+    },
+    "UpdateKeys": []
+}

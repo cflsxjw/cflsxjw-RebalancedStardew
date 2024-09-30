@@ -1,0 +1,34 @@
+{
+    "Format": "2.3.0",
+    "Changes": [
+    {
+        "Action": "EditData",
+        "Target": "Data/Buildings",
+        "Fields": {
+            "Earth Obelisk": {
+                "BuildCost": 250000
+            },
+            "Water Obelisk": {
+                "BuildCost": 250000
+            },
+            "Desert Obelisk": {
+                "BuildCost": 500000
+            },
+            "Island Obelisk": {
+                "BuildCost": 500000
+            },
+            "Gold Clock": {
+                "BuildCost": 3000000
+            }
+        }
+    },
+    {
+        "Action": "EditData",
+        "Target": "Data/Shops",
+        "TargetField": ["ShadowShop", "Items", "(T)ReturnScepter"],
+        "Entries": {
+            "Price": 850000
+        }
+    }
+]
+}
