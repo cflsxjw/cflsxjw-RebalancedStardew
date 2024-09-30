@@ -2,7 +2,7 @@
     "Name": "cflsxjw's Rebalanced Stardew",
     "Author": "cflsxjw",
     "Version": "0.2.1",
-    "Description": "",
+    "Description": "pay for auto-watering",
     "UniqueID": "cflsxjw.rebalancedStardew",
     "EntryDll": "autoWatering.dll",
     "UpdateKeys": []

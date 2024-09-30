@@ -1,0 +1,9 @@
+/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/bin/Debug/net6.0/WalkFaster.deps.json
+/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/bin/Debug/net6.0/WalkFaster.dll
+/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/obj/Debug/net6.0/WalkFaster.csproj.AssemblyReference.cache
+/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/obj/Debug/net6.0/WalkFaster.GeneratedMSBuildEditorConfig.editorconfig
+/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/obj/Debug/net6.0/WalkFaster.AssemblyInfoInputs.cache
+/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/obj/Debug/net6.0/WalkFaster.AssemblyInfo.cs
+/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/obj/Debug/net6.0/WalkFaster.csproj.CoreCompileInputs.cache
+/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/obj/Debug/net6.0/WalkFaster.dll
+/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/obj/Debug/net6.0/WalkFaster.sourcelink.json

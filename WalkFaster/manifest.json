@@ -1,0 +1,9 @@
+{
+    "Name": "Walk Faster",
+    "Author": "cflsxjw",
+    "Version": "0.1.0",
+    "Description": "make player walk faster",
+    "UniqueID": "cflsxjw.walkfaster",
+    "EntryDll": "WalkFaster.dll",
+    "UpdateKeys": []
+}

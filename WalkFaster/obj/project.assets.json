@@ -43,11 +43,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/autoWatering/autoWatering.csproj",
-      "projectName": "autoWatering",
-      "projectPath": "/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/autoWatering/autoWatering.csproj",
+      "projectUniqueName": "/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/WalkFaster.csproj",
+      "projectName": "WalkFaster",
+      "projectPath": "/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/WalkFaster.csproj",
       "packagesPath": "/home/cflsxjw/.nuget/packages/",
-      "outputPath": "/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/autoWatering/obj/",
+      "outputPath": "/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/cflsxjw/.nuget/NuGet/NuGet.Config"

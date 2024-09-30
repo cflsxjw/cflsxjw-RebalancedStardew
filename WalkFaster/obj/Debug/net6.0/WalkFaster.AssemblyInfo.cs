@@ -10,12 +10,12 @@
 using System;
 using System.Reflection;
 
-[assembly: System.Reflection.AssemblyCompanyAttribute("autoWatering")]
+[assembly: System.Reflection.AssemblyCompanyAttribute("WalkFaster")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+20dde9f924974db3c5f004f4e6e289849854d435")]
-[assembly: System.Reflection.AssemblyProductAttribute("autoWatering")]
-[assembly: System.Reflection.AssemblyTitleAttribute("autoWatering")]
+[assembly: System.Reflection.AssemblyProductAttribute("WalkFaster")]
+[assembly: System.Reflection.AssemblyTitleAttribute("WalkFaster")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
 
 // 由 MSBuild WriteCodeFragment 类生成。

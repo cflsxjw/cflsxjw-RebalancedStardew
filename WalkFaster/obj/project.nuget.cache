@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ytRwNgA9daw=",
+  "dgSpecHash": "Bt0X3+06xnU=",
   "success": true,
-  "projectFilePath": "/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/autoWatering/autoWatering.csproj",
+  "projectFilePath": "/home/cflsxjw/RiderProjects/cflsxjw-RebalancedStardew/WalkFaster/WalkFaster.csproj",
   "expectedPackageFiles": [
     "/home/cflsxjw/.nuget/packages/pathoschild.stardew.modbuildconfig/4.2.0/pathoschild.stardew.modbuildconfig.4.2.0.nupkg.sha512"
   ],

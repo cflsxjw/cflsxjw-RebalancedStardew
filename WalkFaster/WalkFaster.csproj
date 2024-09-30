@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <GamePath>/home/cflsxjw/snap/steam/common/.local/share/Steam/steamapps/common/Stardew Valley</GamePath>
+        <EnableHarmony>true</EnableHarmony>
+    </PropertyGroup>
+    
+    <ItemGroup>
+      <PackageReference Include="Pathoschild.Stardew.ModBuildConfig" Version="4.2.0" />
+    </ItemGroup>
+
+</Project>

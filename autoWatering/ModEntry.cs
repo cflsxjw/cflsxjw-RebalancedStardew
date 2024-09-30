@@ -1,11 +1,7 @@
-﻿using System.Transactions;
-using Microsoft.VisualBasic;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using StardewModdingAPI;
 using StardewModdingAPI.Events;
-using StardewModdingAPI.Utilities;
 using StardewValley;
-using StardewValley.Network;
 using StardewValley.Objects;
 using StardewValley.TerrainFeatures;
 
@@ -13,27 +9,27 @@ namespace autoWatering
 {
     internal sealed class ModEntry : Mod
     {
-        readonly Dictionary<Vector2, HoeDirt> HoeDirtList = new();
-        readonly HashSet<Vector2> SprinklerTiles = new();
-        readonly HashSet<IndoorPot> PotList = new();
-        readonly HashSet<GameLocation> plantableList = new();
-        readonly HashSet<GameLocation> unplantableIndoors = new();
+        private readonly Dictionary<Vector2, HoeDirt> _hoeDirtList = new();
+        private readonly HashSet<Vector2> _sprinklerTiles = new();
+        private readonly HashSet<IndoorPot> _potList = new();
+        private readonly HashSet<GameLocation> _plantableList = new();
+        private readonly HashSet<GameLocation> _unplantableIndoors = new();
         public override void Entry(IModHelper helper)
         {
-            helper.Events.GameLoop.SaveLoaded += OnSaveloaded;
+            helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
             helper.Events.World.TerrainFeatureListChanged += OnTerrainFeatureListChanged;
             helper.Events.World.ObjectListChanged += OnObjectListChanged;
             helper.Events.GameLoop.DayStarted += OnDayStarted;
         }
 
-        private void OnSaveloaded(object? sender, SaveLoadedEventArgs e)
+        private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
         {
             CreateLists();
         }
 
         private void OnTerrainFeatureListChanged(object? sender, TerrainFeatureListChangedEventArgs e)
         {
-            if (!plantableList.Contains(e.Location))
+            if (!_plantableList.Contains(e.Location))
             {
                 return;
             }
@@ -42,24 +38,21 @@ namespace autoWatering
             {
                 if (item.Value is HoeDirt hoeDirt)
                 {
-                    if (!HoeDirtList.ContainsKey(hoeDirt.Tile))
-                    {
-                        HoeDirtList.Add(hoeDirt.Tile,hoeDirt);
-                    }
+                    _hoeDirtList.TryAdd(hoeDirt.Tile, hoeDirt);
                 }
             }
             foreach (var item in e.Removed)
             {
                 if (item.Value is HoeDirt hoeDirt)
                 {
-                    HoeDirtList.Remove(hoeDirt.Tile);
+                    _hoeDirtList.Remove(hoeDirt.Tile);
                 }
             }
         }
 
         private void OnObjectListChanged(object? sender, ObjectListChangedEventArgs e)
         {
-            if (!(plantableList.Contains(e.Location) || unplantableIndoors.Contains(e.Location)))
+            if (!(_plantableList.Contains(e.Location) || _unplantableIndoors.Contains(e.Location)))
             {
                 return;
             }
@@ -68,17 +61,14 @@ namespace autoWatering
             {
                 if (item.Value.IsSprinkler())
                 {
-                    foreach (var tile in item.Value.GetSprinklerTiles())
+                    foreach (var tile in item.Value.GetSprinklerTiles().Where(tile => !_sprinklerTiles.Contains(tile)))
                     {
-                        if (!SprinklerTiles.Contains(tile))
-                        {
-                            SprinklerTiles.Add(tile);
-                        }
+                        _sprinklerTiles.Add(tile);
                     }
                 }
                 if (item.Value is IndoorPot pot)
                 {
-                    PotList.Add(pot);
+                    _potList.Add(pot);
                 }
             }
             //remove
@@ -88,59 +78,56 @@ namespace autoWatering
                 {
                     foreach (var tile in item.Value.GetSprinklerTiles())
                     {
-                        SprinklerTiles.Remove(tile);
+                        _sprinklerTiles.Remove(tile);
                     }
                 }
                 if (item.Value is IndoorPot pot)
                 {
-                    PotList.Remove(pot);
+                    _potList.Remove(pot);
                 }
             }
         }
 
         private void OnDayStarted(object? sender, DayStartedEventArgs e)
         {
-            int HoeDirtCount = 0;
-            int PotCount = 0;
-            foreach (var item in HoeDirtList.Values)
+            var count = 0;
+            foreach (var item in _hoeDirtList.Values.TakeWhile(item => !Game1.isRaining && Game1.player._money >= 5))
             {
-                if (!SprinklerTiles.Contains(item.Tile) && item.crop != null)
-                {
-                    item.state.Value = HoeDirt.watered;
-                    HoeDirtCount++;
-                }
+                if (_sprinklerTiles.Contains(item.Tile) || item.crop == null) continue;
+                item.state.Value = HoeDirt.watered;
+                Game1.player._money -= 5;
+                count++;
             }
-            foreach (var item in PotList)
+            foreach (var item in _potList.TakeWhile(item => Game1.player._money >= 5))
             {
-                if (item.hoeDirt.Value.crop != null)
-                {
-                    item.Water();
-                    PotCount++;
-                }
+                if (item.hoeDirt.Value.crop == null) continue;
+                item.Water();
+                Game1.player._money -= 5;
+                count++;
             }
-            Monitor.Log("HoeDirt: " + HoeDirtCount + " " +"Pot: " + PotCount, LogLevel.Error);
+            Game1.addHUDMessage(new HUDMessage($"自动浇水服务今日花费： {count}"));
         }
 
         private void CreateLists()
         {
-            // add avalible locations
+            // add available locations
             foreach (var location in Game1.locations)
             {
                 if (location.IsFarm || location.IsGreenhouse)
                 {
-                    plantableList.Add(location);
+                    _plantableList.Add(location);
                 }
                 else if (!location.IsOutdoors)
                 {
-                    unplantableIndoors.Add(location);
+                    _unplantableIndoors.Add(location);
                 }
             }
             // add hoedirts in farms and greenhouses
-            foreach (var location in plantableList)
+            foreach (var location in _plantableList)
             {
                 foreach(var item in location.terrainFeatures.Values.OfType<HoeDirt>())
                 {
-                    HoeDirtList.Add(item.Tile, item);
+                    _hoeDirtList.Add(item.Tile, item);
                 }
                 foreach (var item in location.objects.Values)
                 {
@@ -148,24 +135,21 @@ namespace autoWatering
                     {
                         foreach(var tile in item.GetSprinklerTiles())
                         {
-                            SprinklerTiles.Add(tile);
+                            _sprinklerTiles.Add(tile);
                         }
                     }
                     else if (item is IndoorPot pot)
                     {
-                        PotList.Add(pot);
+                        _potList.Add(pot);
                     }
                 }
             }
             // add indoor pots
-            foreach (var location in unplantableIndoors)
+            foreach (var item in _unplantableIndoors.SelectMany(location => location.objects.Values))
             {
-                foreach (var item in location.objects.Values)
+                if (item is IndoorPot pot)
                 {
-                    if (item is IndoorPot pot)
-                    {
-                        PotList.Add(pot);
-                    }
+                    _potList.Add(pot);
                 }
             }
         }
