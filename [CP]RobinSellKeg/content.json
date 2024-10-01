@@ -4,7 +4,7 @@
         {
             "Action": "EditData",
             "Target": "Data/Shops",
-            "TargetFeild": [
+            "TargetField": [
                 "Carpenter",
                 "Items"
             ],
@@ -148,6 +148,10 @@
                     "QualityModifierMode": "Stack",
                     "ModData": null,
                     "PerItemCondition": null
+                },
+                "4_cflsxjw":
+                {
+                    
                 }
             }
         }
