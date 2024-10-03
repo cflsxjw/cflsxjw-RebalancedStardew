@@ -1,0 +1,9 @@
+{
+    "Name": "Machine Bubble",
+    "Author": "cflsxjw",
+    "Version": "0.3.0",
+    "Description": "show bubbles on empty machines",
+    "UniqueID": "cflsxjw.machinebubble",
+    "EntryDll": "MachineBubble.dll",
+    "UpdateKeys": []
+}

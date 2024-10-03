@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "autoWatering", "autoWaterin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalkFaster", "WalkFaster\WalkFaster.csproj", "{E112849E-630A-4509-BA0D-DBF5D76ADAB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KegBubble", "KegBubble\KegBubble.csproj", "{AE3DBE3D-50A2-4E0E-A004-0DDD574FAE44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MachineBubble", "MachineBubble\MachineBubble.csproj", "{AE3DBE3D-50A2-4E0E-A004-0DDD574FAE44}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

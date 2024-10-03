@@ -4,7 +4,7 @@ using StardewModdingAPI;
 using StardewModdingAPI.Events;
 using StardewValley;
 
-namespace KegBubble
+namespace MachineBubble
 {
     internal sealed class ModEntry : Mod
     {
@@ -54,18 +54,23 @@ namespace KegBubble
                     _watchLists[item.Value.QualifiedItemId].Remove(item.Value);
                 }
             }
-            Monitor.Log(_watchLists.Count.ToString(), LogLevel.Error);
         }
 
+        private int _renderedCount = 0;
+        private const int Cycle = 100;
+        private const float Factor = Cycle / (2  * MathF.PI);
         private void OnRenderedWorld(object? sender, RenderedWorldEventArgs e)
         {
-            foreach (var item in _watchLists.SelectMany(currentWatchList => currentWatchList.Value.Where(item => item.heldObject.Value == null)))
+            foreach (var item in _watchLists.SelectMany(currentWatchList => currentWatchList.Value.Where(item => item.heldObject.Value == null && item.Location.Equals(Game1.currentLocation))))
             {
                 e.SpriteBatch.Draw(Game1.emoteSpriteSheet,
                     new Vector2(item.TileLocation.X * Game1.tileSize - Game1.viewport.X,
-                        (item.TileLocation.Y - 1.5f) * Game1.tileSize - Game1.viewport.Y),
-                    new Rectangle(0, 64, 16, 16), Color.White, 0f, Vector2.Zero, 4f, SpriteEffects.None, 0f);
+                        (item.TileLocation.Y - 1.5f) * Game1.tileSize - Game1.viewport.Y + 6.5f * (float)Math.Sin(_renderedCount / Factor)) ,
+                    new Rectangle(0, 64, 16, 16), Color.White * 0.5f, 0f, Vector2.Zero, 4f, SpriteEffects.None, 0f);
             }
+            _renderedCount++;
+            if (_renderedCount < Cycle) return;
+            _renderedCount = 0;
         }
     }
 }

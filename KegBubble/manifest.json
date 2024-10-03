@@ -1,9 +1,0 @@
-{
-    "Name": "Keg Bubble",
-    "Author": "cflsxjw",
-    "Version": "0.1.0",
-    "Description": "show bubbles on empty kegs",
-    "UniqueID": "cflsxjw.kegbubble",
-    "EntryDll": "KegBubble.dll",
-    "UpdateKeys": []
-}
