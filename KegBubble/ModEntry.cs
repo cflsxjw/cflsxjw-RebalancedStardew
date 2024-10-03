@@ -8,21 +8,31 @@ namespace KegBubble
 {
     internal sealed class ModEntry : Mod
     {
-        private readonly HashSet<StardewValley.Object> _kegList = new();
+        private readonly Dictionary<string, HashSet<StardewValley.Object>> _watchLists = new();
+        private readonly HashSet<string> _trackedTypes = new()
+        {
+            "(BC)12", "(BC)15"
+        };
         public override void Entry(IModHelper helper)
         {
             helper.Events.GameLoop.SaveLoaded += OnSaveLoaded;
             helper.Events.World.ObjectListChanged += OnObjectListChanged;
             helper.Events.Display.RenderedWorld += OnRenderedWorld;
-        }
-        
+        } 
         private void OnSaveLoaded(object? sender, SaveLoadedEventArgs e)
         {
+            // init
+            foreach (var type in _trackedTypes)
+            {
+                _watchLists.Add(type, new HashSet<StardewValley.Object>());
+            }
+            
+            // search for machines
             foreach (var location in Game1.locations)
             {
-                foreach (var item in location.Objects.Values.Where(item => item.QualifiedItemId == "(BC)12"))
+                foreach (var item in location.Objects.Values.Where(item => _trackedTypes.Contains(item.QualifiedItemId)))
                 {
-                    _kegList.Add(item);
+                    _watchLists[item.QualifiedItemId].Add(item);
                 }
             }
         }
@@ -31,25 +41,25 @@ namespace KegBubble
         {
             foreach (var item in e.Added)
             {
-                if (item.Value.QualifiedItemId == "(BC)12")
+                if (_trackedTypes.Contains(item.Value.QualifiedItemId))
                 {
-                    _kegList.Add(item.Value);
+                    _watchLists[item.Value.QualifiedItemId].Add(item.Value);
                 }
             }
 
             foreach (var item in e.Removed)
             {
-                if (item.Value.QualifiedItemId == "(BC)12")
+                if (_trackedTypes.Contains(item.Value.QualifiedItemId))
                 {
-                    _kegList.Remove(item.Value);
+                    _watchLists[item.Value.QualifiedItemId].Remove(item.Value);
                 }
             }
-            Monitor.Log(_kegList.Count.ToString(), LogLevel.Error);
+            Monitor.Log(_watchLists.Count.ToString(), LogLevel.Error);
         }
 
         private void OnRenderedWorld(object? sender, RenderedWorldEventArgs e)
         {
-            foreach (var item in _kegList.Where(item => item.heldObject.Value == null))
+            foreach (var item in _watchLists.SelectMany(currentWatchList => currentWatchList.Value.Where(item => item.heldObject.Value == null)))
             {
                 e.SpriteBatch.Draw(Game1.emoteSpriteSheet,
                     new Vector2(item.TileLocation.X * Game1.tileSize - Game1.viewport.X,
