@@ -11,7 +11,17 @@ namespace MachineBubble
         private readonly Dictionary<string, HashSet<StardewValley.Object>> _watchLists = new();
         private readonly HashSet<string> _trackedTypes = new()
         {
-            "(BC)12", "(BC)15"
+            "(BC)12",  // Keg
+            "(BC)15",  // Preserves Jar
+            "(BC)16",  // Cheese Press
+            "(BC)17",  // Loom
+            "(BC)19",  // Oil Maker
+            "(BC)20",  // Recycling Machine
+            "(BC)21",  // Crystalarium
+            "(BC)24",  // Mayonnaise Machine
+            "(BC)25",  // Seed Maker
+            "(BC)FishSmoker", // Fish Smoker
+            "(O)710" // Crab Pot
         };
         public override void Entry(IModHelper helper)
         {
@@ -57,7 +67,7 @@ namespace MachineBubble
         }
 
         private int _renderedCount = 0;
-        private const int Cycle = 100;
+        private const int Cycle = 100; // cycle of animation
         private const float Factor = Cycle / (2  * MathF.PI);
         private void OnRenderedWorld(object? sender, RenderedWorldEventArgs e)
         {
